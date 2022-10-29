@@ -1,0 +1,14 @@
+version: "3.1"
+services:
+  db:
+    image: postgres:14
+    container_name: user-mgmt-db
+    volumes:
+      - db_data:/var/lib/postgresql
+    ports:
+      - 5433:5432
+    environment:
+      POSTGRES_DB: "user-mgmt-db"
+      POSTGRES_PASSWORD: "postgres"
+volumes:
+  db_data: {}
