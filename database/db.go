@@ -7,7 +7,7 @@ import (
 )
 
 func OpenDbConnection() *sql.DB {
-	db, err := sql.Open("postgres", "postgresql://postgres:postgres@user-mgmt-db:5433/user-mgmt-db?sslmode=disable")
+	db, err := sql.Open("postgres", "postgresql://postgres:postgres@0.0.0.0:5433/user-mgmt-db?sslmode=disable")
 	if err != nil {
 		log.Fatalf("Could not connect to database: %v", err)
 	}
