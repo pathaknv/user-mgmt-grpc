@@ -7,7 +7,7 @@ import (
 	"log"
 )
 
-func (s *Server) CreateUser(ctx context.Context, in *pb.UserParams) (*pb.User, error) {
+func (s *Server) CreateUser(ctx context.Context, in *pb.User) (*pb.User, error) {
 	log.Printf("CreateUser invoked on server side...")
 
 	db := database.OpenDbConnection()

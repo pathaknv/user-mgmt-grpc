@@ -10,7 +10,7 @@ import (
 
 var grpcAddr string = "0.0.0.0:5001"
 
-func createUser(params *pb.UserParams) *pb.User {
+func createUser(params *pb.User) *pb.User {
 	conn, err := grpc.Dial(grpcAddr, grpc.WithTransportCredentials(insecure.NewCredentials()))
 	defer conn.Close()
 	if err != nil {

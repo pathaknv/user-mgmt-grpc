@@ -11,7 +11,7 @@ import (
 func CreateUserHandler(w http.ResponseWriter, r *http.Request) {
 	log.Printf("Starting request: POST /users")
 
-	var user pb.UserParams
+	var user pb.User
 	json.NewDecoder(r.Body).Decode(&user)
 
 	createUser(&user)
