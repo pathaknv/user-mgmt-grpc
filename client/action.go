@@ -39,3 +39,16 @@ func getUser(id *pb.Id) (*pb.User, error) {
 
 	return user, err
 }
+
+func updateUser(userParams *pb.User) (*pb.User, error) {
+	conn, err := grpc.Dial(grpcAddr, grpc.WithTransportCredentials(insecure.NewCredentials()))
+	defer conn.Close()
+	if err != nil {
+		log.Fatalf("Failed to connect gRPC server: %v", err)
+	}
+
+	client := pb.NewUserServiceClient(conn)
+	user, err := client.UpdateUser(context.Background(), userParams)
+
+	return user, err
+}

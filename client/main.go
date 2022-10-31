@@ -13,6 +13,7 @@ func main() {
 
 	router.HandleFunc("/users", CreateUserHandler).Methods("POST")
 	router.HandleFunc("/users/{id}", GetUserHandler).Methods("GET")
+	router.HandleFunc("/users/{id}", UpdateUserHandler).Methods("PUT")
 
 	log.Print("Listening on ", addr)
 	http.ListenAndServe(":5002", router)

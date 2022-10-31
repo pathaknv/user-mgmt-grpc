@@ -17,5 +17,6 @@ message Id {
 service UserService {
 	rpc CreateUser(User) returns (User);
 	rpc GetUser(Id) returns (User);
+	rpc UpdateUser(User) returns (User);
 }
 
