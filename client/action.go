@@ -26,3 +26,16 @@ func createUser(params *pb.User) *pb.User {
 
 	return user
 }
+
+func getUser(id *pb.Id) (*pb.User, error) {
+	conn, err := grpc.Dial(grpcAddr, grpc.WithTransportCredentials(insecure.NewCredentials()))
+	defer conn.Close()
+	if err != nil {
+		log.Fatalf("Failed to connect gRPC server: %v", err)
+	}
+
+	client := pb.NewUserServiceClient(conn)
+	user, err := client.GetUser(context.Background(), id)
+
+	return user, err
+}
