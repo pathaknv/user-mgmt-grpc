@@ -18,5 +18,6 @@ service UserService {
 	rpc CreateUser(User) returns (User);
 	rpc GetUser(Id) returns (User);
 	rpc UpdateUser(User) returns (User);
+	rpc DeleteUser(Id) returns (Id);
 }
 

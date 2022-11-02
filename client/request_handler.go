@@ -72,3 +72,24 @@ func UpdateUserHandler(w http.ResponseWriter, r *http.Request) {
 	log.Printf("Completed request PATCH /users/:id")
 	log.Printf("----------------------------------------------")
 }
+
+func DeleteUserHandler(w http.ResponseWriter, r *http.Request) {
+	log.Printf("Starting request: DELETE /users/:id")
+
+	params := mux.Vars(r)
+	id, err := strconv.ParseInt(params["id"], 10, 32)
+	if err != nil {
+		fmt.Fprintf(w, "Failed to parse ID")
+	} else {
+		idStruct := pb.Id{Id: int32(id)}
+		err = deleteUser(&idStruct)
+		if err != nil {
+			fmt.Fprintf(w, "Failed to deleted user record!")
+		} else {
+			fmt.Fprintf(w, "User recrod deleted successfully!")
+		}
+	}
+
+	log.Printf("Completed request DELETE /users/:id")
+	log.Printf("---------------------------------------------")
+}

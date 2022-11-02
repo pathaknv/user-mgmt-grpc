@@ -73,3 +73,21 @@ func (s *Server) UpdateUser(ctx context.Context, userParams *pb.User) (*pb.User,
 
 	return &pb.User{}, nil
 }
+
+func (s *Server) DeleteUser(ctx context.Context, id *pb.Id) (*pb.Id, error) {
+	log.Printf("DeleteUser invoked on server side...")
+
+	db := database.OpenDbConnection()
+	defer db.Close()
+
+	sqlQuery := "DELETE FROM users WHERE id = $1"
+	result, err := db.Exec(sqlQuery, id.Id)
+	rowsAffected, err := result.RowsAffected()
+	if err != nil {
+		return id, err
+	} else if rowsAffected == 0 {
+		return id, errors.New("Failed to delete record!")
+	}
+
+	return id, nil
+}
