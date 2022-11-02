@@ -10,5 +10,27 @@ services:
     environment:
       POSTGRES_DB: "user-mgmt-db"
       POSTGRES_PASSWORD: "postgres"
+    restart: always
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    container_name: user-mgmt-grpc-server
+    ports:
+      - 5001:5001
+    restart: always
+    depends_on:
+      - db
+  client:
+    build:
+      context: .
+      dockerfile: Dockerfile.client
+    container_name: user-mgmt-grpc-client
+    ports:
+      - 5002:5002
+    restart: always
+    depends_on:
+      - db
+      - server
 volumes:
   db_data: {}

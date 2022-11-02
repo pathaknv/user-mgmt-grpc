@@ -8,7 +8,7 @@ import (
 	"log"
 )
 
-var grpcAddr string = "0.0.0.0:5001"
+var grpcAddr string = "user-mgmt-grpc-server:5001"
 
 func createUser(params *pb.User) *pb.User {
 	conn, err := grpc.Dial(grpcAddr, grpc.WithTransportCredentials(insecure.NewCredentials()))

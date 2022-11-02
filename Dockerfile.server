@@ -1,0 +1,10 @@
+FROM golang:1.19
+
+WORKDIR /user-mgmt-grpc
+
+COPY . .
+RUN go mod download
+RUN go build -o server-app ./server
+
+CMD "./server-app"
+
